@@ -1,6 +1,20 @@
 const MongoClient = require('mongodb').MongoClient
-const uri = 'mongodb+srv://cdsj90:cdsj90@cluster0.agwmi.mongodb.net/cdsj90?retryWrites=true&w=majority'
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+const MONGODB_URI = 'mongodb+srv://cdsj90:cdsj90@cluster0.agwmi.mongodb.net/cdsj90?retryWrites=true&w=majority'
+
+let cachedDb = null
+
+function connectToDatabase (uri) {
+  console.log('=> connect to database')
+  if (cachedDb) {
+    console.log('=> using cached database instance')
+    return Promise.resolve(cachedDb)
+  }
+  return MongoClient.connect(uri)
+    .then(client => {
+      cachedDb = client.db()
+      return cachedDb
+    })
+}
 
 export default async (req, res) => {
   const before = req.query.cursor || req.query.before
@@ -14,31 +28,26 @@ export default async (req, res) => {
     filter.$gt = new Date(after)
   }
 
-  try {
-    await client.connect()
-    const db = client.db()
-    const sheeps = db.collection('sheeps')
+  connectToDatabase(MONGODB_URI)
+    .then(async db => {
+      const sheeps = db.collection('sheeps')
 
-    const cursor = sheeps
-      .find({
-        createdAt: filter,
-        deletedAt: { $exists: false }
-      }, {
-        sort: { createdAt: -1 }
+      const cursor = sheeps
+        .find({
+          createdAt: filter,
+          deletedAt: { $exists: false }
+        }, {
+          sort: { createdAt: -1 }
+        })
+        .limit(limit || 10)
+
+      const result = await cursor.toArray()
+
+      return res.json({
+        success: true,
+        data: {
+          sheeps: result || []
+        }
       })
-      .limit(limit || 10)
-
-    const result = await cursor.toArray()
-
-    return res.json({
-      success: true,
-      data: {
-        sheeps: result || []
-      }
     })
-  } catch (error) {
-    console.log(error)
-  } finally {
-    await client.close()
-  }
 }
