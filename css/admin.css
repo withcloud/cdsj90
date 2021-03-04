@@ -1,0 +1,69 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+.yellow {
+  background-color: yellow;
+}
+.black {
+  background-color: black;
+}
+
+.hide {
+  display: none;
+}
+
+/* video {
+  width: 100%;
+  height: 100%;
+} */
+
+.brand {
+  text-align: center;
+  font-size: 100px;
+  margin: 0;
+}
+
+.video-wrapper {
+  position: relative;
+  height: 400px;
+  width: 400px;
+}
+
+#sheep-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.sheeps {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sheeps > div {
+  padding: 10px;
+}
+
+.sheeps img {
+  height: 200px;
+  width: 200px;
+}

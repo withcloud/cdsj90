@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "babel-eslint": "10.0.3",
+    "standard": "14.3.4"
+  },
+  "dependencies": {
+    "mongodb": "^3.6.4"
+  }
+}

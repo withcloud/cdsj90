@@ -1,0 +1,77 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+.yellow {
+  background-color: yellow;
+}
+.black {
+  background-color: black;
+}
+
+.hide {
+  display: none;
+}
+
+/* video {
+  width: 100%;
+  height: 100%;
+} */
+
+.brand {
+  text-align: center;
+  font-size: 100px;
+  margin: 0;
+}
+
+.video-wrapper {
+  position: relative;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#sheep-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+#sheep-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
