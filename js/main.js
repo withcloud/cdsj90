@@ -240,6 +240,8 @@ class Sheep {
       // 重新加到 old sheeps
       delete this.sheep.layer
       oldSheeps.push(this.sheep)
+      // 在 dom 移除他
+      $(`#sheep-${this.sheep._id}`).remove()
     } else if (this.layer !== this.sheep.layer) {
       this.layer = this.sheep.layer
       this.top = this.getTop()
