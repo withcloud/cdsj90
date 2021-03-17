@@ -9,7 +9,7 @@ html, body {
 
 .wrapper {
   position: relative;
-  width: 2400px;
+  width: 3200px;
   height: 1800px;
   overflow: hidden;
 }
@@ -26,7 +26,7 @@ html, body {
   left: 0;
   top: 0;
   z-index: 100;
-  width: 2400px;
+  width: 3200px;
   height: 1800px;
   overflow: hidden;
 }

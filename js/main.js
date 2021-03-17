@@ -213,7 +213,7 @@ class Sheep {
     this.layer = sheep.layer
     this.id = sheep._id
 
-    this.left = -400
+    this.left = -600
     this.top = this.getTop()
 
     this.init()
@@ -235,7 +235,7 @@ class Sheep {
     if (this.sheep.layer >= 4) {
       // 走到畫面外
       // console.log(this.id, 'randomAnimate', 'go away')
-      await this.walkTo(2400)
+      await this.walkTo(3200)
       // 不會再有一下個 timer
       // 重新加到 old sheeps
       delete this.sheep.layer
@@ -278,18 +278,18 @@ class Sheep {
   }
 
   getTop () {
-    let top = 1300
+    let top = 1100
     if (this.layer === 0) {
-      top = 1300 + this.getRandomInt(100)
+      top = 1100 + this.getRandomInt(100)
     }
     if (this.layer === 1) {
-      top = 800 + this.getRandomInt(200)
+      top = 700 + this.getRandomInt(200)
     }
     if (this.layer === 2) {
-      top = 400 + this.getRandomInt(200)
+      top = 300 + this.getRandomInt(200)
     }
     if (this.layer === 3) {
-      top = 0 + this.getRandomInt(200)
+      top = -100 + this.getRandomInt(200)
     }
     return top
   }
@@ -305,15 +305,17 @@ class Sheep {
     this.$div.appendTo('.sheeps')
 
     const canvas = document.createElement('canvas')
-    canvas.width = 400
-    canvas.height = 400
+    canvas.width = 600
+    canvas.height = 600
     var ctx = canvas.getContext('2d')
+    ctx.scale(1.5, 1.5)
     var img = new Image()
     img.onload = () => {
       var imgMask = document.getElementById('sheep-mask')
       ctx.drawImage(imgMask, 0, 0)
       ctx.globalCompositeOperation = 'source-out'
       ctx.drawImage(img, 0, 0)
+      // var newCanvas = scale(1.5, canvas)
       this.$div.append(canvas)
     }
     img.src = this.sheep.img
@@ -342,9 +344,9 @@ class Sheep {
   }
 
   randomNextLeft () {
-    let left = this.getRandomInt(2000)
+    let left = this.getRandomInt(2600)
     while (Math.abs(this.left - left) < 500) {
-      left = this.getRandomInt(2000)
+      left = this.getRandomInt(2600)
     }
     return left
   }
